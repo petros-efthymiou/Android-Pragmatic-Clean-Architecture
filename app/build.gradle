@@ -1,0 +1,104 @@
+/*
+ * Copyright 2022 Petros Efthymiou Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+apply from: '../dependencies.gradle'
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "com.petros.efthymiou.pragmaticcleanarchitecture"
+        minSdk 28
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11
+        languageVersion = "1.6"
+        freeCompilerArgs += '-Xopt-in=kotlin.RequiresOptIn'
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.1.0-beta04"
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+}
+
+dependencies {
+
+    implementation commonDependencies.core
+    implementation commonDependencies.kotlinStd
+    implementation commonDependencies.appCompat
+    implementation commonDependencies.material
+    implementation commonDependencies.constraintLayout
+    implementation commonDependencies.liveData
+    implementation commonDependencies.viewModel
+    implementation commonDependencies.lifecycleRuntime
+    implementation commonDependencies.composeUI
+    implementation commonDependencies.composeFoundation
+    implementation commonDependencies.composeMaterial
+    implementation commonDependencies.composeRuntime
+    implementation commonDependencies.composeThemeAdapter
+    implementation commonDependencies.coil
+    implementation commonDependencies.retrofit
+    implementation commonDependencies.gson
+    implementation commonDependencies.loggingInterceptor
+    implementation commonDependencies.koin
+    implementation commonDependencies.coroutines
+    implementation commonDependencies.fragment
+    implementation commonDependencies.navigation
+
+    testImplementation commonTestDependencies.junit4
+    testImplementation commonTestDependencies.mockito
+    testImplementation commonTestDependencies.mockitoInline
+    testImplementation commonTestDependencies.coroutinesTest
+    testImplementation commonTestDependencies.koinTest
+    testImplementation commonTestDependencies.koinJunitTest
+    testImplementation  'app.cash.turbine:turbine:0.7.0'
+
+    androidTestImplementation commonTestDependencies.androidJunit
+    androidTestImplementation commonTestDependencies.espresso
+
+
+}
