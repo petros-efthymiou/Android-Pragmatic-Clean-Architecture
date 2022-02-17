@@ -14,21 +14,19 @@
  * limitations under the License.
  */
 
-package com.petros.efthymiou.pragmaticcleanarchitecture
+package com.petros.efthymiou.pragmaticcleanarchitecture.home.application.data.remote
 
-import android.app.Application
-import com.petros.efthymiou.pragmaticcleanarchitecture.home.framework.di.homeModule
-import org.koin.android.ext.koin.androidContext
-import org.koin.core.context.GlobalContext.startKoin
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.usecases.LikeArticleSource
 
-class PragmaticCleanApplication : Application() {
 
-    override fun onCreate() {
-        super.onCreate()
+class LikeArticleSourceRemote(
+    private val articleRemoteSource: ArticleDataSourceRemote,
+) : LikeArticleSource {
 
-        startKoin {
-            androidContext(this@PragmaticCleanApplication)
-            modules(listOf(homeModule))
-        }
+
+    override suspend fun likeArticle(id: String) {
+        articleRemoteSource.likeArticle(id)
     }
 }
+
+

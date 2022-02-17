@@ -18,20 +18,20 @@ package com.petros.efthymiou.pragmaticcleanarchitecture.home.utils
 
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
-import com.petros.efthymiou.pragmaticcleanarchitecture.articles.application.data.ArticlesDataSourceRemote
-import com.petros.efthymiou.pragmaticcleanarchitecture.articles.application.data.AuthorDataSourceLocal
-import com.petros.efthymiou.pragmaticcleanarchitecture.articles.application.data.GetArticlesSourceRemote
-import com.petros.efthymiou.pragmaticcleanarchitecture.articles.application.data.LikeArticleSourceRemote
-import com.petros.efthymiou.pragmaticcleanarchitecture.articles.application.presentation.HomeStateMapper
-import com.petros.efthymiou.pragmaticcleanarchitecture.articles.application.presentation.HomeViewModel
-import com.petros.efthymiou.pragmaticcleanarchitecture.articles.application.presentation.usecases.GetArticles
-import com.petros.efthymiou.pragmaticcleanarchitecture.articles.application.presentation.usecases.GetArticlesSource
-import com.petros.efthymiou.pragmaticcleanarchitecture.articles.application.presentation.usecases.LikeArticle
-import com.petros.efthymiou.pragmaticcleanarchitecture.articles.application.presentation.usecases.LikeArticleSource
-import com.petros.efthymiou.pragmaticcleanarchitecture.articles.framework.local.AuthorLocalDataGateway
-import com.petros.efthymiou.pragmaticcleanarchitecture.articles.framework.remote.ArticlesApi
-import com.petros.efthymiou.pragmaticcleanarchitecture.articles.framework.remote.ArticlesRemoteDataGateway
-import com.petros.efthymiou.pragmaticcleanarchitecture.articles.framework.remote.ArticlesService
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.data.remote.ArticleDataSourceRemote
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.data.local.AuthorDataSourceLocal
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.data.remote.GetArticlesSourceRemote
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.data.remote.LikeArticleSourceRemote
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.HomeStateMapper
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.HomeViewModel
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.usecases.GetArticles
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.usecases.GetArticlesSource
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.usecases.LikeArticle
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.usecases.LikeArticleSource
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.framework.local.AuthorLocalDataGateway
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.framework.remote.ArticlesApi
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.framework.remote.ArticleRemoteDataGateway
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.framework.remote.ArticlesService
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -41,7 +41,7 @@ val homeModuleHappy = module {
     single { LikeArticle(get()) }
     single { HomeStateMapper() }
     single<GetArticlesSource> { GetArticlesSourceRemote(get(), get()) }
-    single<ArticlesDataSourceRemote> { ArticlesRemoteDataGateway(get()) }
+    single<ArticleDataSourceRemote> { ArticleRemoteDataGateway(get()) }
     single<AuthorDataSourceLocal> { AuthorLocalDataGateway() }
     viewModel { HomeViewModel(get(), get(), get()) }
     single { ArticlesService(get()) }
@@ -51,6 +51,7 @@ val homeModuleHappy = module {
 
 fun provideArticlesApi(): ArticlesApi = mock {
     onBlocking { fetchAllArticles() } doReturn articlesResultRaw
+    onBlocking { likeArticle("articleId1") }
 }
 
 

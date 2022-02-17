@@ -16,20 +16,37 @@
 
 package com.petros.efthymiou.pragmaticcleanarchitecture.home
 
-import com.petros.efthymiou.pragmaticcleanarchitecture.home.framework.remote.ArticleRaw
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.data.remote.ArticleDataSourceRemote
 import com.petros.efthymiou.pragmaticcleanarchitecture.home.utils.BaseUnitTestHome
 import com.petros.efthymiou.pragmaticcleanarchitecture.home.utils.articlesPlain
-import com.petros.efthymiou.pragmaticcleanarchitecture.home.utils.articlesResultRaw
+import junit.framework.TestCase.assertEquals
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.count
+import kotlinx.coroutines.flow.single
+import kotlinx.coroutines.test.runTest
 import org.junit.Test
-import kotlin.test.assertEquals
+import org.koin.test.inject
 
-class ArticleRawShould : BaseUnitTestHome() {
+@ExperimentalCoroutinesApi
+class ArticleRemoteDataGatewayShould: BaseUnitTestHome() {
+
+    private val gateway by inject<ArticleDataSourceRemote> ()
 
     @Test
-    fun mapArticlesRawToPlain() {
-        val actual = ArticleRaw.mapArticlesRawToPlain(articlesResultRaw)
+    fun mapAndEmitArticlesPlainFromService() = runTest {
+        happyPath()
+
+        val actual = gateway.fetchArticles().single()
 
         assertEquals(articlesPlain, actual)
     }
 
+    @Test
+    fun notCrashAndNotEmitErrors() = runTest {
+        errorCase()
+
+        val actual = gateway.fetchArticles().count()
+
+        assertEquals(0, actual)
+    }
 }

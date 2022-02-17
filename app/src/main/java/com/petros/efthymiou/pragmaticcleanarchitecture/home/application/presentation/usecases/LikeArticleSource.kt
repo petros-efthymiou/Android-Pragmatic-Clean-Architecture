@@ -14,21 +14,10 @@
  * limitations under the License.
  */
 
-package com.petros.efthymiou.pragmaticcleanarchitecture
+package com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.usecases
 
-import android.app.Application
-import com.petros.efthymiou.pragmaticcleanarchitecture.home.framework.di.homeModule
-import org.koin.android.ext.koin.androidContext
-import org.koin.core.context.GlobalContext.startKoin
 
-class PragmaticCleanApplication : Application() {
+interface LikeArticleSource {
 
-    override fun onCreate() {
-        super.onCreate()
-
-        startKoin {
-            androidContext(this@PragmaticCleanApplication)
-            modules(listOf(homeModule))
-        }
-    }
+    suspend fun likeArticle(id: String)
 }

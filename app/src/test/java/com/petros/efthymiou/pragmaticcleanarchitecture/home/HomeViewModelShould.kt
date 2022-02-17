@@ -16,9 +16,12 @@
 
 package com.petros.efthymiou.pragmaticcleanarchitecture.home
 
-import com.petros.efthymiou.pragmaticcleanarchitecture.articles.application.presentation.HomeIntent
-import com.petros.efthymiou.pragmaticcleanarchitecture.articles.application.presentation.HomeState
-import com.petros.efthymiou.pragmaticcleanarchitecture.articles.application.presentation.HomeViewModel
+import com.nhaarman.mockitokotlin2.times
+import com.nhaarman.mockitokotlin2.verify
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.HomeIntent
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.HomeState
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.HomeViewModel
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.framework.remote.ArticlesApi
 import com.petros.efthymiou.pragmaticcleanarchitecture.home.utils.BaseUnitTestHome
 import com.petros.efthymiou.pragmaticcleanarchitecture.home.utils.successfulState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -31,6 +34,7 @@ import kotlin.test.assertEquals
 class HomeViewModelShould : BaseUnitTestHome() {
 
     private val viewModel by inject<HomeViewModel>()
+
 
     @Test
     fun emitsLoadingStateInitially() {

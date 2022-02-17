@@ -14,21 +14,9 @@
  * limitations under the License.
  */
 
-package com.petros.efthymiou.pragmaticcleanarchitecture
+package com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation
 
-import android.app.Application
-import com.petros.efthymiou.pragmaticcleanarchitecture.home.framework.di.homeModule
-import org.koin.android.ext.koin.androidContext
-import org.koin.core.context.GlobalContext.startKoin
-
-class PragmaticCleanApplication : Application() {
-
-    override fun onCreate() {
-        super.onCreate()
-
-        startKoin {
-            androidContext(this@PragmaticCleanApplication)
-            modules(listOf(homeModule))
-        }
-    }
+sealed class HomeIntent {
+    object ViewAllArticles : HomeIntent()
+    data class LikeArticle(val id: String) : HomeIntent()
 }

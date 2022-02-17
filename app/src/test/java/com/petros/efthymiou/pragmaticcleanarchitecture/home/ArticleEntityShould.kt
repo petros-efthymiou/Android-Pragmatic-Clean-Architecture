@@ -16,7 +16,7 @@
 
 package com.petros.efthymiou.pragmaticcleanarchitecture.home
 
-import com.petros.efthymiou.pragmaticcleanarchitecture.articles.application.presentation.Article
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.Article
 import com.petros.efthymiou.pragmaticcleanarchitecture.home.utils.articles
 import com.petros.efthymiou.pragmaticcleanarchitecture.home.utils.articlesAuthors
 import org.junit.Test

@@ -14,29 +14,32 @@
  * limitations under the License.
  */
 
-package com.petros.efthymiou.pragmaticcleanarchitecture.home.utils
+package com.petros.efthymiou.pragmaticcleanarchitecture.home.framework.di
 
-import com.nhaarman.mockitokotlin2.doThrow
-import com.nhaarman.mockitokotlin2.mock
-import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.data.remote.ArticleDataSourceRemote
+
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.usecases.LikeArticle
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.data.*
 import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.data.local.AuthorDataSourceLocal
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.data.remote.ArticleDataSourceRemote
 import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.data.remote.GetArticlesSourceRemote
 import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.data.remote.LikeArticleSourceRemote
-import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.HomeStateMapper
-import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.HomeViewModel
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.*
 import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.usecases.GetArticles
 import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.usecases.GetArticlesSource
-import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.usecases.LikeArticle
 import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.usecases.LikeArticleSource
 import com.petros.efthymiou.pragmaticcleanarchitecture.home.framework.local.AuthorLocalDataGateway
 import com.petros.efthymiou.pragmaticcleanarchitecture.home.framework.remote.ArticlesApi
 import com.petros.efthymiou.pragmaticcleanarchitecture.home.framework.remote.ArticleRemoteDataGateway
 import com.petros.efthymiou.pragmaticcleanarchitecture.home.framework.remote.ArticlesService
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
-import java.lang.RuntimeException
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
-val homeModuleError = module {
+val homeModule = module {
 
     single { GetArticles(get()) }
     single { LikeArticle(get()) }
@@ -47,10 +50,28 @@ val homeModuleError = module {
     viewModel { HomeViewModel(get(), get(), get()) }
     single { ArticlesService(get()) }
     single<LikeArticleSource> { LikeArticleSourceRemote(get()) }
-    single { provideArticlesApiError() }
+
+    single { provideLoggingInterceptor() }
+    single { provideHttpClient(get()) }
+    single { provideArticlesApi(get()) }
+    single { provideRetrofit(get()) }
+
 }
 
-
-fun provideArticlesApiError(): ArticlesApi = mock {
-    onBlocking { fetchAllArticles() } doThrow RuntimeException("networking error")
+fun provideLoggingInterceptor(): HttpLoggingInterceptor {
+    val interceptor = HttpLoggingInterceptor()
+    interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+    return interceptor
 }
+
+private fun provideHttpClient(interceptor: HttpLoggingInterceptor) =
+    OkHttpClient.Builder().readTimeout(20, TimeUnit.SECONDS).connectTimeout(20, TimeUnit.SECONDS)
+        .addInterceptor(interceptor).build()
+
+fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
+    Retrofit.Builder().baseUrl("https://articles-clean.herokuapp.com/api/v2/")
+        .client(okHttpClient)
+        .addConverterFactory(GsonConverterFactory.create()).build()
+
+
+fun provideArticlesApi(retrofit: Retrofit): ArticlesApi = retrofit.create(ArticlesApi::class.java)

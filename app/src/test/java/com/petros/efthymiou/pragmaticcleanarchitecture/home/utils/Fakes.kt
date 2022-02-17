@@ -16,12 +16,12 @@
 
 package com.petros.efthymiou.pragmaticcleanarchitecture.home.utils
 
-import com.petros.efthymiou.pragmaticcleanarchitecture.articles.application.presentation.Article
-import com.petros.efthymiou.pragmaticcleanarchitecture.articles.application.presentation.HomeState
-import com.petros.efthymiou.pragmaticcleanarchitecture.articles.application.presentation.plain.ArticlePlain
-import com.petros.efthymiou.pragmaticcleanarchitecture.articles.application.presentation.plain.ArticlesAuthors
-import com.petros.efthymiou.pragmaticcleanarchitecture.articles.application.presentation.plain.AuthorPlain
-import com.petros.efthymiou.pragmaticcleanarchitecture.articles.framework.remote.ArticleRaw
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.Article
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.HomeState
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.plain.ArticlePlain
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.plain.ArticlesAuthors
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.plain.AuthorPlain
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.framework.remote.ArticleRaw
 
 val articlesResultRaw: List<ArticleRaw> = listOf(
     ArticleRaw(

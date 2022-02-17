@@ -16,7 +16,7 @@
 
 package com.petros.efthymiou.pragmaticcleanarchitecture.home
 
-import com.petros.efthymiou.pragmaticcleanarchitecture.articles.application.presentation.usecases.GetArticles
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.usecases.GetArticles
 import com.petros.efthymiou.pragmaticcleanarchitecture.home.utils.BaseUnitTestHome
 import com.petros.efthymiou.pragmaticcleanarchitecture.home.utils.articlesAuthors
 import junit.framework.TestCase.assertEquals

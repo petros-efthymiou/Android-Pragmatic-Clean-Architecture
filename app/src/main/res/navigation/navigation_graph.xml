@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/landing_fragment"
-        android:name="com.petros.efthymiou.pragmaticcleanarchitecture.articles.framework.HomeFragment"
+        android:name="com.petros.efthymiou.pragmaticcleanarchitecture.home.framework.HomeFragment"
         android:label="PlaylistFragment" >
     </fragment>
 

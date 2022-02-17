@@ -14,21 +14,13 @@
  * limitations under the License.
  */
 
-package com.petros.efthymiou.pragmaticcleanarchitecture
+package com.petros.efthymiou.pragmaticcleanarchitecture.home.application.data.local
 
-import android.app.Application
-import com.petros.efthymiou.pragmaticcleanarchitecture.home.framework.di.homeModule
-import org.koin.android.ext.koin.androidContext
-import org.koin.core.context.GlobalContext.startKoin
+import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.plain.AuthorPlain
+import kotlinx.coroutines.flow.Flow
 
-class PragmaticCleanApplication : Application() {
+interface AuthorDataSourceLocal {
 
-    override fun onCreate() {
-        super.onCreate()
+    suspend fun findAuthors(): Flow<List<AuthorPlain>>
 
-        startKoin {
-            androidContext(this@PragmaticCleanApplication)
-            modules(listOf(homeModule))
-        }
-    }
 }
