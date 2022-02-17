@@ -31,13 +31,13 @@ import kotlin.test.assertEquals
 @ExperimentalCoroutinesApi
 class GetArticlesSourceRemoteShould : BaseUnitTestHome() {
 
-    private val source by inject<GetArticlesSource>()
+    private val sut by inject<GetArticlesSource>()
 
     @Test
     fun combineArticleData() = runTest {
         happyPath()
 
-        val actual = source.articles().single()
+        val actual = sut.articles().single()
         assertEquals(articlesAuthors, actual)
     }
 
@@ -45,7 +45,7 @@ class GetArticlesSourceRemoteShould : BaseUnitTestHome() {
     fun doesNotEmitInCaseOfError() = runTest {
         errorCase()
 
-        val actual = source.articles().count()
+        val actual = sut.articles().count()
         assertEquals(0, actual)
     }
 }

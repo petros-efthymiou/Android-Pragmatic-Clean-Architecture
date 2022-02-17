@@ -30,13 +30,13 @@ import org.koin.test.inject
 @ExperimentalCoroutinesApi
 class ArticleRemoteDataGatewayShould: BaseUnitTestHome() {
 
-    private val gateway by inject<ArticleDataSourceRemote> ()
+    private val sut by inject<ArticleDataSourceRemote> ()
 
     @Test
     fun mapAndEmitArticlesPlainFromService() = runTest {
         happyPath()
 
-        val actual = gateway.fetchArticles().single()
+        val actual = sut.fetchArticles().single()
 
         assertEquals(articlesPlain, actual)
     }
@@ -45,7 +45,7 @@ class ArticleRemoteDataGatewayShould: BaseUnitTestHome() {
     fun notCrashAndNotEmitErrors() = runTest {
         errorCase()
 
-        val actual = gateway.fetchArticles().count()
+        val actual = sut.fetchArticles().count()
 
         assertEquals(0, actual)
     }

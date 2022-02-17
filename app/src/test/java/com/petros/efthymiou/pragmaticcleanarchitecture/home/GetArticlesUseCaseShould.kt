@@ -30,13 +30,13 @@ import org.koin.test.inject
 @ExperimentalCoroutinesApi
 class GetArticlesUseCaseShould : BaseUnitTestHome() {
 
-    private val useCase by inject<GetArticles>()
+    private val sut by inject<GetArticles>()
 
     @Test
     fun emitArticlesData() = runTest {
         happyPath()
 
-        val actual = useCase().single()
+        val actual = sut().single()
 
         assertEquals(Result.success(articlesAuthors), actual)
     }
@@ -45,7 +45,7 @@ class GetArticlesUseCaseShould : BaseUnitTestHome() {
     fun notEmitInCaseOfError() = runTest {
         errorCase()
 
-        val actual = useCase().count()
+        val actual = sut().count()
 
         assertEquals(0, actual)
     }

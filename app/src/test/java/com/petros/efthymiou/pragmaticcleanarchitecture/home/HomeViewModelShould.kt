@@ -16,12 +16,9 @@
 
 package com.petros.efthymiou.pragmaticcleanarchitecture.home
 
-import com.nhaarman.mockitokotlin2.times
-import com.nhaarman.mockitokotlin2.verify
 import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.HomeIntent
 import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.HomeState
 import com.petros.efthymiou.pragmaticcleanarchitecture.home.application.presentation.HomeViewModel
-import com.petros.efthymiou.pragmaticcleanarchitecture.home.framework.remote.ArticlesApi
 import com.petros.efthymiou.pragmaticcleanarchitecture.home.utils.BaseUnitTestHome
 import com.petros.efthymiou.pragmaticcleanarchitecture.home.utils.successfulState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -33,14 +30,13 @@ import kotlin.test.assertEquals
 @ExperimentalCoroutinesApi
 class HomeViewModelShould : BaseUnitTestHome() {
 
-    private val viewModel by inject<HomeViewModel>()
-
+    private val sut by inject<HomeViewModel>()
 
     @Test
     fun emitsLoadingStateInitially() {
         happyPath()
 
-        val actual = viewModel.uiState.value
+        val actual = sut.uiState.value
 
         assertEquals(HomeState.Loading, actual)
     }
@@ -49,9 +45,9 @@ class HomeViewModelShould : BaseUnitTestHome() {
     fun emitSuccessfulStateAfterViewArticlesIntent() = runTest {
         happyPath()
 
-        viewModel.handleIntent(HomeIntent.ViewAllArticles)
+        sut.handleIntent(HomeIntent.ViewAllArticles)
 
-        val actual = viewModel.uiState.value
+        val actual = sut.uiState.value
 
         assertEquals(successfulState, actual)
     }
@@ -60,9 +56,9 @@ class HomeViewModelShould : BaseUnitTestHome() {
     fun emitEmptyStateWhenEmptyListIsReceived() = runTest {
         emptyResultPath()
 
-        viewModel.handleIntent(HomeIntent.ViewAllArticles)
+        sut.handleIntent(HomeIntent.ViewAllArticles)
 
-        val actual = viewModel.uiState.value
+        val actual = sut.uiState.value
 
         assertEquals(HomeState.Empty, actual)
     }
@@ -71,9 +67,9 @@ class HomeViewModelShould : BaseUnitTestHome() {
     fun notCrashAndNotPropagateError() = runTest {
         errorCase()
 
-        viewModel.handleIntent(HomeIntent.ViewAllArticles)
+        sut.handleIntent(HomeIntent.ViewAllArticles)
 
-        val actual = viewModel.uiState.value
+        val actual = sut.uiState.value
 
         assertEquals(HomeState.Loading, actual)
     }

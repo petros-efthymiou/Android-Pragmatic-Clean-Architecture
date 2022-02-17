@@ -31,5 +31,4 @@ class ArticleRawShould : BaseUnitTestHome() {
 
         assertEquals(articlesPlain, actual)
     }
-
 }
