@@ -2,7 +2,7 @@ Android Pragmatic Clean Architecture
 =========================================
 Introduction
 ------------
-This repo is an example of the Mobile Microservices Architecture and is offered as an appendix to the book <INSERT_BOOK_NAME_AND_LINK>. The book is covering all the aspects of building Clean Mobile Applications and explains the reasoning behind all the decisions made in this sample project.
+This repo is an example of the powerful Mobile Pragmatic Clean Architecture and is offered as an appendix to the book <INSERT_BOOK_NAME_AND_LINK>. The book is covering all the aspects of building Clean Mobile Applications and explains the reasoning behind all the decisions made in this sample project.
 
 This architecture is primarily intended for educational purposes and aims to describe engineering concepts and practices such as:
 
@@ -18,19 +18,23 @@ This architecture is primarily intended for educational purposes and aims to des
 * Segregation into independent modules
 * Packaging
 
-Pragmatic Clean Architecture is inteted to be a flexible Architecture that respects the S.O.L.I.D principles Clean Architecture guidelines. It can be used in medium to complex sized applications and will ensure their scalability to fully grown enterprise apps when the need arises.
 
-For a more elaborate architecture, aimed solely for large-scale, enterprice apps you can refer to the other example included in the book [Mobile Microservices Architecture](https://github.com/petros-efthymiou/Mobile-Android-Microservices-Architecture).
+Pragmatic Clean Architecture is intended to be a flexible Mobile Architecture that respects the S.O.L.I.D principles Clean Architecture guidelines. It can be used in applications of any complexity and will ensure their scalability to fully grown enterprise apps when the need arises.
+
+For a more elaborate architecture, aimed solely for large-scale, enterprise apps you can refer to the other example included in the book [Mobile Microservices Architecture](https://github.com/petros-efthymiou/Mobile-Android-Microservices-Architecture).
+
 
 Clean Layering
 --------------
 
+![onion_architecture (3)](https://user-images.githubusercontent.com/98778003/154707256-9c36cb94-4501-45f3-a41e-fb291699fe47.png)
 
 
 The diagram above describes the layering of the project. The thick lines indicate hard boundaries, separation in modules while the thin lines represent soft boundaries, separation in packages.
 
 Architectural Overview
 ---------------
+![image1](https://user-images.githubusercontent.com/98778003/154707300-f1f1de66-4db2-487a-b2ca-1af1cf697fc9.png)
 
 
 For more information please refer to the book.
