@@ -2,7 +2,7 @@ Android Pragmatic Clean Architecture
 =========================================
 Introduction
 ------------
-This repo is an example of the powerful Mobile Pragmatic Clean Architecture and is offered as an appendix to the book <INSERT_BOOK_NAME_AND_LINK>. The book is covering all the aspects of building Clean Mobile Applications and explains the reasoning behind all the decisions made in this sample project.
+This repo is an example of the powerful Mobile Pragmatic Clean Architecture and is offered as an appendix to the book [Clean Mobile Architecture](https://www.petrosefthymiou.com/product-page). The book covers all the aspects of building Clean Mobile Applications and explains the reasoning behind all the decisions made in this sample project.
 
 This architecture is primarily intended for educational purposes and aims to describe engineering concepts and practices such as:
 
@@ -15,29 +15,38 @@ This architecture is primarily intended for educational purposes and aims to des
 * Reactive Programming
 * Unit testing
 * UI Testing
-* Segregation into independent modules
-* Packaging
+* Proper package segregation
 
 
-Pragmatic Clean Architecture is intended to be a flexible Mobile Architecture that respects the S.O.L.I.D principles Clean Architecture guidelines. It can be used in applications of any complexity and will ensure their scalability to fully grown enterprise apps when the need arises.
+Pragmatic Clean Architecture is intended to be a flexible Mobile Architecture that respects the S.O.L.I.D principles, Clean Architecture, and other mobile best practices. It can be used in applications of any complexity and will ensure their scalability to fully grown enterprise apps should the need arise.
 
-For a more elaborate architecture, aimed solely for large-scale, enterprise apps you can refer to the other example included in the book [Mobile Microservices Architecture](https://github.com/petros-efthymiou/Mobile-Android-Microservices-Architecture).
+The technology stack includes:
+* Jetpack Compose
+* Jetpack Navigation
+* Coroutines
+* Kotlin Flow
+* State Flow
+* Retrofit
+* Koin
 
 
-Clean Layering
+Pragmatic Clean Layering
 --------------
+![Pragmatic-layering](https://user-images.githubusercontent.com/98778003/162454704-385f93da-9f5e-4ece-9194-45de35f6cdcd.png)
 
-![onion_architecture (3)](https://user-images.githubusercontent.com/98778003/154707256-9c36cb94-4501-45f3-a41e-fb291699fe47.png)
 
 
-The diagram above describes the layering of the project. The thick lines indicate hard boundaries, separation in modules while the thin lines represent soft boundaries, separation in packages.
+The diagram above describes the layering of the project. The thick lines indicate hard boundaries, and separation in modules, while the thin lines represent soft boundaries and separation in packages.
 
 Architectural Overview
 ---------------
-![image1](https://user-images.githubusercontent.com/98778003/154707300-f1f1de66-4db2-487a-b2ca-1af1cf697fc9.png)
+![Pragmatic_overview](https://user-images.githubusercontent.com/98778003/162454307-2e7e64c3-bbeb-4c18-b7a6-93be578f7309.png)
 
 
-For more information please refer to the book.
+For more information, please refer to the book [Clean Mobile Architecture](https://www.petrosefthymiou.com/product-page).
+
+
+For a more elaborate architecture aimed solely at large-scale enterprise apps, you can refer to the other example included in the book [Mobile Microservices Architecture](https://github.com/petros-efthymiou/Mobile-Android-Microservices-Architecture).
 
 License
 --------
@@ -58,3 +67,5 @@ License
   ```
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/petrosefth)
+
+
