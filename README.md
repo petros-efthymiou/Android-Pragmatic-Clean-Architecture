@@ -2,7 +2,7 @@ Android Pragmatic Clean Architecture
 =========================================
 Introduction
 ------------
-This repo is an example of the powerful Mobile Pragmatic Clean Architecture and is offered as an appendix to the book [Clean Mobile Architecture](https://www.petrosefthymiou.com/product-page). The book covers all the aspects of building Clean Mobile Applications and explains the reasoning behind all the decisions made in this sample project.
+This repo is an example of the powerful Mobile Pragmatic Clean Architecture and is offered as an appendix to the book [Clean Mobile Architecture](https://www.petrosefthymiou.com/product-page). The book covers all the aspects of architecting Mobile Applications and explains the reasoning behind all the decisions made in this sample project.
 
 This architecture is primarily intended for educational purposes and aims to describe engineering concepts and practices such as:
 
